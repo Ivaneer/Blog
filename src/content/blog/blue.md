@@ -1,3 +1,8 @@
+---
+title: "Blue"
+description: "Blue thm"
+pubDate: 2025-05-09
+---
 https://tryhackme.com/r/room/blue
 # Fase de reconocimiento
 ## Buscar puertos abiertos
