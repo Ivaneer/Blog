@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
-const { title } = Astro.props;
+import Header from "../layouts/Header.astro";
+const { title, posts = [], currentSlug = "" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -11,57 +12,125 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
 
-  <body class="bg-zinc-900 text-zinc-100 font-sans leading-relaxed prose prose-invert dark:prose-invert max-w-3xl mx-auto px-4 py-8 
-    [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 
-    [&_h2]:text-2xl [&_pre]:relative [&_pre]:p-4 [&_code]:block [&_code]:whitespace-pre [&_a]:text-blue-500">
+  <body class="bg-[#0b0a0a] text-zinc-100 font-sans leading-relaxed min-h-screen flex pt-20">
+    <Header />
+    <!-- Barra lateral izquierda -->
+    <aside class="hidden md:block fixed top-0 left-0 w-60 h-screen overflow-y-auto p-4 border-r border-zinc-800 text-sm bg-[#0b0a0a] z-40 pt-20">
+      <h2 class="text-zinc-400 font-semibold mb-4">Otros posts</h2>
+      <ul class="space-y-2">
+        {
+          posts.map(post => (
+            <li>
+              <a
+                href={`/blog/${post.slug}/`}
+                class={`block transition-colors hover:text-white ${
+                  currentSlug === post.slug ? "text-[#18bfe4] font-bold" : "text-zinc-400"
+                }`}
+              >
+                {post.data.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
 
-    <slot />
+    <!-- Contenido principal -->
+    <main id="content" class="flex-1 px-10 py-8 mx-auto ml-60 mr-[18rem] prose prose-invert
+      [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 [&_h1]:scroll-mt-[64px]
+      [&_h2]:text-2xl 
+      [&_pre]:overflow-x-auto [&_pre]:break-all [&_pre]:max-w-full [&_pre]:relative [&_pre]:p-4 [&_pre]:!bg-[#121110] [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/10 [&_pre]:my-6
+      [&_code]:whitespace-pre-wrap [&_code]:whitespace-pre [&_code]:break-words [&_code]:break-all [&_code]:overflow-x-auto [&_code]:max-w-full
+      [&_a]:text-violet-500 [&_a:hover]:underline [&_a:hover]:decoration-violet-500 ">
+      
+      <slot />
+    </main>
+
+    <!-- TOC fijo a la derecha -->
+    <nav id="toc" class="hidden md:block fixed top-24 right-4 w-60 max-h-[calc(100vh-6rem)] overflow-y-auto prose prose-invert border-l border-zinc-700 pl-4">
+      <h2 class="font-bold mb-4 text-zinc-300">Contenido</h2>
+      <ul class="space-y-2"></ul>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Botón copiar
+        document.querySelectorAll('pre').forEach(pre => {
+          const code = pre.querySelector('code');
+          if (!code || pre.querySelector('.copy-button')) return;
+
+          const button = document.createElement('button');
+          button.className = `
+            copy-button absolute top-2 right-2 p-1
+            bg-zinc-800 text-white rounded
+            opacity-60 hover:opacity-100 transition
+            flex items-center justify-center z-10
+          `;
+
+          const copySVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>';
+          const checkSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-current text-black"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z"/></svg>';
+
+          button.innerHTML = copySVG;
+
+          button.addEventListener('click', () => {
+            navigator.clipboard.writeText(code.innerText).then(() => {
+              button.innerHTML = checkSVG;
+              setTimeout(() => {
+                button.innerHTML = copySVG;
+              }, 2000);
+            });
+          });
+
+          pre.style.position = 'relative';
+          pre.appendChild(button);
+        });
+
+        // TOC automático
+        const tocList = document.querySelector('#toc ul');
+        const headings = Array.from(document.querySelectorAll('#content h1'));
+
+        if (tocList && headings.length > 0) {
+          headings.forEach(heading => {
+            if (!heading.id) {
+              heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+            }
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `#${heading.id}`;
+            a.textContent = heading.textContent;
+            a.className = "hover:text-white transition-colors text-zinc-400";
+            li.appendChild(a);
+            tocList.appendChild(li);
+          });
+        }
+
+        // Scrollspy
+        const tocLinks = document.querySelectorAll('#toc a');
+
+        function onScroll() {
+          let current = headings[0];
+          const scrollPos = window.scrollY + 130;
+
+          for (let i = 0; i < headings.length; i++) {
+            if (headings[i].offsetTop <= scrollPos) {
+              current = headings[i];
+            } else {
+              break;
+            }
+          }
+
+          tocLinks.forEach(link => {
+            link.classList.remove('text-[#18bfe4]', 'font-bold');
+            if (link.getAttribute('href') === '#' + current.id) {
+              link.classList.add('text-[#18bfe4]', 'font-bold');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+      });
+    </script>
+
   </body>
 </html>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('pre').forEach(pre => {
-      const code = pre.querySelector('code');
-      if (!code || pre.querySelector('.copy-button')) return;
-
-      const button = document.createElement('button');
-      button.className = `
-        copy-button absolute top-2 right-2 p-1
-        bg-zinc-800 text-white rounded
-        opacity-60 hover:opacity-100 transition
-        flex items-center justify-center z-10
-      `;
-
-      const copySVG = `
-        <svg xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" class="w-4 h-4 fill-current">
-          <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
-        </svg>
-      `;
-
-      const checkSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" class="w-4 h-4 fill-current text-black-400">
-          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z"/>
-        </svg>
-      `;
-
-      button.innerHTML = copySVG;
-
-      button.addEventListener('click', () => {
-        navigator.clipboard.writeText(code.innerText).then(() => {
-          button.innerHTML = checkSVG;
-          setTimeout(() => {
-            button.innerHTML = copySVG;
-          }, 2000);
-        });
-      });
-
-      pre.appendChild(button);
-    });
-  });
-</script>
-
-
-

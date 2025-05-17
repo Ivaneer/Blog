@@ -9,10 +9,11 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
+const allPosts = await getCollection('blog');
 const { post } = Astro.props;
 const { Content } = await post.render();
 ---
-<BlogLayout title={post.data.title}>
+<BlogLayout title={post.data.title} posts={allPosts} currentSlug={post.slug}>
   <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
   <article class="prose prose-lg max-w-none">
   <Content />
