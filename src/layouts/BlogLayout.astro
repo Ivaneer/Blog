@@ -34,12 +34,13 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
     </aside>
 
     <!-- Contenido principal -->
-    <main id="content" class="flex-1 px-10 py-8 mx-auto ml-60 mr-[18rem] prose prose-invert
-      [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 [&_h1]:scroll-mt-[55px]
+    <main id="content" class="flex-1 px-4 md:px-10 py-8 mx-auto md:ml-60 md:mr-[18rem] prose prose-invert
+      [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 [&_h1]:scroll-mt-[84px]
       [&_h2]:text-2xl 
       [&_pre]:overflow-x-auto [&_pre]:break-all [&_pre]:max-w-full [&_pre]:relative [&_pre]:p-4 [&_pre]:!bg-[#121110] [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/10 [&_pre]:my-6
       [&_code]:whitespace-pre-wrap [&_code]:break-words [&_code]:break-all [&_code]:overflow-x-auto [&_code]:max-w-full
       [&_a]:text-violet-500 [&_a:hover]:underline [&_a:hover]:decoration-violet-500">
+
       <slot />
     </main>
 
