@@ -4,166 +4,64 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <style>
-      :root {
-        --blue: #007bff;
-        --blue-light: rgba(0, 123, 255, 0.3);
-        --dark-blue: #61dafb;
-        --dark-blue-light: rgba(97, 218, 251, 0.3);
-        --gray-dark: #2e2e2e;
-      }
-
-      body {
-        font-family: 'Inter', 'Segoe UI', sans-serif;
-        background-color: #1a1a1a;
-        color: #e5e5e5;
-        line-height: 1.7;
-        margin: 0;
-        padding: 0;
-      }
-
-      .prose {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1.5rem;
-      }
-
-      h1 {
-        font-size: 2.8em;
-        font-weight: 800;
-        margin-top: 1em;
-        margin-bottom: 0.5em;
-        border-bottom: 4px solid var(--blue);
-        padding-bottom: 0.3em;
-        color: var(--blue);
-        text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-        animation: fadeInDown 0.5s ease-out;
-      }
-
-      h2 {
-        font-size: 2em;
-        font-weight: 700;
-        margin-top: 2em;
-        margin-bottom: 0.4em;
-        border-bottom: 2px solid var(--blue-light);
-        padding-bottom: 0.2em;
-        color: var(--blue-light);
-        animation: fadeInDown 0.4s ease-out;
-      }
-
-      h3 {
-        font-size: 1.4em;
-        font-weight: 600;
-        color: var(--dark-blue);
-        margin-top: 1.5em;
-        margin-bottom: 0.5em;
-      }
-
-      p {
-        font-size: 1.1em;
-        margin-bottom: 1.2em;
-      }
-
-      pre {
-        background-color: #2b2b2b;
-        padding: 1em;
-        border-radius: 8px;
-        font-size: 0.95em;
-        overflow-x: auto;
-        position: relative;
-      }
-
-      code {
-        font-family: 'Fira Code', monospace;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin: 1em auto;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      }
-
-      blockquote {
-        border-left: 4px solid var(--blue);
-        padding-left: 1em;
-        background-color: #222;
-        margin: 1.5em 0;
-        font-style: italic;
-      }
-
-      .copy-button {
-        position: absolute;
-        top: 0.4rem;
-        right: 0.4rem;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        opacity: 0.7;
-        color: #ccc;
-        z-index: 10;
-      }
-
-      .copy-button:hover {
-        opacity: 1;
-      }
-
-      .copy-button svg {
-        width: 1em;
-        height: 1em;
-        fill: currentColor;
-      }
-
-      @keyframes fadeInDown {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
   </head>
 
-  <body class="prose">
+  <body class="bg-zinc-900 text-zinc-100 font-sans leading-relaxed prose prose-invert dark:prose-invert max-w-3xl mx-auto px-4 py-8 
+    [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 
+    [&_h2]:text-2xl [&_pre]:relative [&_pre]:p-4 [&_code]:block [&_code]:whitespace-pre [&_a]:text-blue-500">
+
     <slot />
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const codeBlocks = document.querySelectorAll('pre');
-
-        codeBlocks.forEach(block => {
-          const codeElement = block.querySelector('code');
-          if (!codeElement) return;
-
-          const button = document.createElement('button');
-          button.className = 'copy-button';
-          button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-          `;
-
-          button.addEventListener('click', () => {
-            navigator.clipboard.writeText(codeElement.innerText).then(() => {
-              const original = button.innerHTML;
-              button.innerHTML = '✅ Copiado';
-              setTimeout(() => button.innerHTML = original, 1500);
-            });
-          });
-
-          block.appendChild(button);
-        });
-      });
-    </script>
   </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('pre').forEach(pre => {
+      const code = pre.querySelector('code');
+      if (!code || pre.querySelector('.copy-button')) return;
+
+      const button = document.createElement('button');
+      button.className = `
+        copy-button absolute top-2 right-2 p-1
+        bg-zinc-800 text-white rounded
+        opacity-60 hover:opacity-100 transition
+        flex items-center justify-center z-10
+      `;
+
+      const copySVG = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" class="w-4 h-4 fill-current">
+          <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
+        </svg>
+      `;
+
+      const checkSVG = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" class="w-4 h-4 fill-current text-black-400">
+          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z"/>
+        </svg>
+      `;
+
+      button.innerHTML = copySVG;
+
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.innerText).then(() => {
+          button.innerHTML = checkSVG;
+          setTimeout(() => {
+            button.innerHTML = copySVG;
+          }, 2000);
+        });
+      });
+
+      pre.appendChild(button);
+    });
+  });
+</script>
+
+
+
