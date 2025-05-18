@@ -9,7 +9,7 @@ https://tryhackme.com/r/room/blue
 ```
 nmap -sT -Pn -p- --open --min-rate 5000 -T5 -vvv -n 10.10.101.248 -oG allports
 ```
-![[Pasted image 20240427181452.png]]
+![](/attachments/Pasted%20image%2020240427181452.png)
 ## Reconocimiento de servicios
 ```
 nmap -sCV -p135,139,445,3389 10.10.101.248 -oN targeted
