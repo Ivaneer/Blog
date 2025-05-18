@@ -37,8 +37,8 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
     <main id="content" class="flex-1 px-4 md:px-10 py-8 mx-auto md:ml-60 md:mr-[18rem] prose prose-invert
       [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-zinc-200 [&_h1]:border-b-4 [&_h1]:border-zinc-500 [&_h1]:pb-2 [&_h1]:scroll-mt-[84px]
       [&_h2]:text-2xl 
-      [&_pre]:overflow-x-auto [&_pre]:break-all [&_pre]:max-w-full [&_pre]:relative [&_pre]:p-4 [&_pre]:!bg-[#121110] [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/10 [&_pre]:my-6
-      [&_code]:whitespace-pre-wrap [&_code]:break-words [&_code]:break-all [&_code]:overflow-x-auto [&_code]:max-w-full
+      [&_pre]:overflow-x-auto [&_pre]:break-all [&_pre]:max-w-full [&_pre]:relative [&_pre]:p-4 [&_pre]:!bg-[#121110] [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/10 [&_pre]:my-6 [&_pre]:group
+      [&_code]:whitespace-pre-wrap [&_code]:break-words [&_code]:break-all [&_code]:overflow-x-auto [&_code]:max-w-full [&_code]:group
       [&_a]:text-violet-500 [&_a:hover]:underline [&_a:hover]:decoration-violet-500">
 
       <slot />
@@ -53,51 +53,64 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
     <script defer>
       document.addEventListener('DOMContentLoaded', () => {
         const preElements = document.querySelectorAll('pre');
-
+    
         preElements.forEach(pre => {
           const code = pre.querySelector('code');
           if (!code || pre.querySelector('.copy-button')) return;
-
+    
           const button = document.createElement('button');
           button.className = `
             copy-button absolute top-2 right-2 p-1
-            bg-zinc-800 text-white rounded
-            opacity-60 hover:opacity-100 transition
+            bg-transparent text-white rounded
+            opacity-0 transition-opacity duration-300
             flex items-center justify-center z-10
-            cursor-pointer
+            cursor-pointer pointer-events-none group-hover:pointer-events-auto
+          `.trim();
+    
+          button.setAttribute('data-copy', '');
+    
+          button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="icon-copy w-4 h-4 fill-current">
+              <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
+            </svg>
           `;
-          button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>';
-
-          button.addEventListener('click', () => {
-            navigator.clipboard.writeText(code.innerText).then(() => {
-              button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-white text-black"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z"/></svg>';
-              setTimeout(() => {
-                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>';
-              }, 2000);
-            });
+          pre.addEventListener('mouseenter', () => {
+            button.style.opacity = "1";
+            button.style.pointerEvents = "auto";
           });
-
+          pre.addEventListener('mouseleave', () => {
+            button.style.opacity = "0";
+            button.style.pointerEvents = "none";
+          });
           pre.appendChild(button);
         });
-
+    
         const tocList = document.querySelector('#toc ul');
         const headings = Array.from(document.querySelectorAll('#content h1'));
+    
         if (tocList && headings.length > 0) {
           headings.forEach(heading => {
             if (!heading.id) {
               heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
             }
+    
             const li = document.createElement('li');
-            li.innerHTML = `<a href="#${heading.id}" class="hover:text-white transition-colors text-zinc-400">${heading.textContent}</a>`;
+            li.innerHTML = `
+              <a href="#${heading.id}" class="hover:text-white transition-colors text-zinc-400">
+                ${heading.textContent}
+              </a>`;
             tocList.appendChild(li);
           });
         }
-
+    
         const tocLinks = document.querySelectorAll('#toc a');
+    
         function onScroll() {
           const scrollPos = window.scrollY + 130;
           let current = headings[0];
-
+    
           for (let i = 0; i < headings.length; i++) {
             if (headings[i].offsetTop <= scrollPos) {
               current = headings[i];
@@ -105,7 +118,7 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
               break;
             }
           }
-
+    
           tocLinks.forEach(link => {
             link.classList.remove('text-[#18bfe4]', 'font-bold');
             if (link.getAttribute('href') === '#' + current.id) {
@@ -113,11 +126,12 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
             }
           });
         }
-
+    
         window.addEventListener('scroll', onScroll);
         onScroll();
       });
     </script>
+    
     <script type="module" src="/src/components/Animations-gsap.ts" client:load></script>
   </body>
 </html>
