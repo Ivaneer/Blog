@@ -4,7 +4,6 @@ import "../styles/global.css";
 import Header from "../layouts/Header.astro";
 const posts = await getCollection('blog');
 ---
-
 <Header />
 
 <div class="min-h-screen bg-[#0b0a0a] text-white pt-24 px-4 flex justify-center mwg_effect000">
@@ -31,4 +30,4 @@ const posts = await getCollection('blog');
   </div>
 </div>
 
-<script type="module" src="components/BlogEffect-gsap.ts"></script>
+<script type="module" src="/src/components/BlogEffect-gsap.ts"></script>
