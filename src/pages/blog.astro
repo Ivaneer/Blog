@@ -1,14 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
+import "../styles/global.css";
+import Header from "../layouts/Header.astro";
 const posts = await getCollection('blog');
 ---
-<h1 class="text-2xl font-bold">Blog</h1>
-<ul>
-  {posts.map(post => (
-    <li>
-      <a href={`/blog/${post.slug}/`} class="text-blue-600 underline">
-        {post.data.title} 
-      </a>
-    </li>
-  ))}
-</ul>
+
+<Header />
+
+<!-- Contenedor para animación con GSAP -->
+<div class="min-h-screen bg-[#0b0a0a] text-white pt-24 px-4 flex justify-center mwg_effect000">
+  <div class="max-w-6xl w-full">
+    <h1 class="text-3xl font-extrabold mb-10 text-center tracking-wide text-[#43D9AD]">
+      Writeups
+    </h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+      {posts.map((post) => (
+        <a
+          data-href={`/blog/${post.slug}/`}
+          class="group block w-full media border border-white/20 backdrop-blur-sm bg-white/5 hover:bg-white/10 rounded-xl p-6 shadow-[0_0_20px_rgba(67,217,173,0.1)] transition-all duration-300 cursor-pointer"
+        >
+          <div class="text-[#43D9AD] font-semibold text-xl mb-2 group-hover:underline">
+            {post.data.title}
+          </div>
+          <p class="text-[#607B96] text-sm leading-relaxed">
+            {post.data.description ?? 'No description provided.'}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/components/BlogEffect-gsap.ts"></script>
