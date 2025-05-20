@@ -12,7 +12,10 @@ export default defineConfig({
   },
 
   markdown: {
-    syntaxHighlight: false,
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      theme: 'dracula',
+    }
   },
 
   integrations: [react()],
