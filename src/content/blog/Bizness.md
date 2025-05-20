@@ -1,6 +1,6 @@
 ---
 title: "Bizness"
-description: "Bizness"
+description: "Documenta la fase inicial de reconocimiento de una máquina, incluyendo la búsqueda de puertos abiertos con nmap y la enumeración de subdominios con ffuf."
 pubDate: 2025-05-20
 ---
 

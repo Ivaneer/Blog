@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import Particles404 from "../components/Particles404.tsx";
+import Header from "../layouts/Header.astro";
+---
+
+<html lang="es">
+  <head>
+    <title>404 - Página no encontrada</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body class="bg-[#0b0a0a] text-white flex flex-col items-center justify-center h-screen relative overflow-hidden">
+    <Header />
+    <div class="fixed inset-0 z-0 w-screen h-screen">
+        <Particles404 client:only="react" />
+    </div>
+    <main class="z-10 text-center">
+      <h1 class="text-9xl font-extrabold text-[#C1FF00] mb-4">404</h1>
+      <p class="text-sm text-[#607B96] uppercase tracking-widest mb-2">[404 ERROR]</p>
+      <p class="text-lg text-white">The page you are looking for cannot be found or no longer exists.</p>
+      <a href="/" class="text-[#18bfe4] mt-6 inline-block hover:underline">Volver al inicio</a>
+    </main>
+  </body>
+</html>

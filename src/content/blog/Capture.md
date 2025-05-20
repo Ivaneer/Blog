@@ -38,7 +38,7 @@ hydra -L usernames.txt -P passwords.txt "http-post-form://10.10.139.144/login:us
 
 Primero buscamos el usuario
 
-````
+````python
 import requests
 import re
 
@@ -91,7 +91,7 @@ with open(usuarios_file, 'r') as usuarios:
 ![](https://uuqke3c479llohf3.public.blob.vercel-storage.com/Pasted%20image%2020240430225750.png)
 Ahora buscamos la contraseña
 
-````
+````python
 import requests
 
 import re

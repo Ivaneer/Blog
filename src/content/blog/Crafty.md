@@ -1,6 +1,6 @@
 ---
 title: "Crafty"
-description: "Crafty"
+description: "Detalla la fase de reconocimiento de una máquina, la identificación de servicios, incluyendo un servidor de Minecraft vulnerable a Log4j, y la mención de una herramienta de explotación para Log4j."
 pubDate: 2025-05-20
 ---
 

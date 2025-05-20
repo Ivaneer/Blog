@@ -1,6 +1,6 @@
 ---
 title: "Creative"
-description: "Creative"
+description: "Exploración de una máquina y descubrimiento de subdominios con SSRF, que permite acceso a directorios internos. Se obtienen credenciales SSH mediante cracking de passphrase de clave privada y se escala privilegios abusando de LD_PRELOAD con sudo."
 pubDate: 2025-05-20
 ---
 

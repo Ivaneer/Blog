@@ -2,14 +2,17 @@
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
 import Anim from "../components/AnimationsBlogs-gsap.tsx";
+import { ClientRouter } from "astro:transitions";
 const { title, posts = [], currentSlug = "" } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+    <title>{title} - Ivaneer</title>
+    <ClientRouter fallback="none" />
   </head>
 
   <body class="bg-[#0b0a0a] text-zinc-100 font-sans leading-relaxed min-h-screen flex pt-20">

