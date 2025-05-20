@@ -1,7 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import "../styles/global.css";
+import { getCollection } from 'astro:content';
 import Header from "../layouts/Header.astro";
+import Anim from "../components/AnimationsBlogIndex-gsap.tsx";
 const posts = await getCollection('blog');
 ---
 <Header />
@@ -30,4 +31,4 @@ const posts = await getCollection('blog');
   </div>
 </div>
 
-<script type="module" src="/src/components/BlogEffect-gsap.ts"></script>
+<Anim client:only="react" />

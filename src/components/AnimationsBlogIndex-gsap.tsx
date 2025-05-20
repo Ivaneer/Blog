@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import gsap from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 
-window.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(InertiaPlugin);
+gsap.registerPlugin(InertiaPlugin);
+
+const Anim = () => {
+  useEffect(() => {
 
   let oldX = 0, oldY = 0, deltaX = 0, deltaY = 0;
 
@@ -90,4 +93,9 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-});
+  });
+  
+return null;
+};
+
+export default Anim;

@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
+import Anim from "../components/AnimationsBlogs-gsap.tsx";
 const { title, posts = [], currentSlug = "" } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -132,6 +133,6 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
       });
     </script>
     
-    <script type="module" src="/src/components/Animations-gsap.ts" client:load></script>
+    <Anim client:only="react" />
   </body>
 </html>
