@@ -1,108 +1,100 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import {
-  type Container,
-  type ISourceOptions,
-} from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
+import { loadAll } from "@tsparticles/all";
+import { type Container, type ISourceOptions } from "@tsparticles/engine";
 
-export default function Particles404() {
+const Particles404 = () => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      await loadSlim(engine);  // carga sólo lo básico necesario
-    }).then(() => {
-      setInit(true);
-    });
+      await loadAll(engine);
+    }).then(() => setInit(true));
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
-     console.log(container); // opcional para debug
+    console.log("Particles loaded", container);
   };
 
   const options: ISourceOptions = useMemo(() => ({
     background: {
-      color: { value: "#0b0a0a" },
+      color: { value: "#000000" },
     },
     fpsLimit: 60,
-    fullScreen: {
-        enable: true,
-        zIndex: 0,
-      },
+    detectRetina: true,
     interactivity: {
       events: {
-        onHover: { enable: true, mode: "repulse" },
-        resize: { enable: true, delay: 0.5 },
+        onHover: {
+          enable: true,
+          mode: ["bubble"],
+        },
+        resize: true,
       },
       modes: {
-        repulse: { distance: 100, duration: 0.4 },
+        bubble: {
+          distance: 80,
+          duration: 0.6,
+          size: 4,
+          opacity: 1,
+        },
       },
     },
     particles: {
+      number: {
+        value: 400,
+        density: { enable: false },
+      },
+      color: {
+        value: "#c1ff00",
+      },
+      links: {
+        enable: true,
+        distance: 40,
+        color: "#c1ff00",
+        opacity: 0.3,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1.2, // Más rápido
+        random: true,
+        outModes: {
+          default: "bounce", // para que no salgan del path
+        },
+      },
+      opacity: {
+        value: 0.8,
+        random: { enable: true, minimumValue: 0.5 },
+      },
+      size: {
+        value: 1.5,
+        random: true,
+      },
       shape: {
-        type: "char",
-        options: {
-          char: {
-            value: ["4", "0", "4"],
-            font: "Verdana",
-            weight: "bold",
-            fill: true,
-          },
-        },
+        type: "circle",
       },
-      size: { value: 16 },
-      move: { enable: false },
-      color: { value: "#C1FF00" },
-      number: { value: 0, density: { enable: false } },
     },
-    emitters: [
-      {
-        position: { x: 25, y: 50 },
-        rate: { quantity: 1, delay: 0.01 },
-        size: { width: 0, height: 0 },
-        particles: {
-          shape: {
-            type: "char",
-            options: { char: { value: "4", font: "Verdana", fill: true } },
-          },
-        },
+    polygon: {
+      draw: {
+        enable: false,
       },
-      {
-        position: { x: 50, y: 50 },
-        rate: { quantity: 1, delay: 0.01 },
-        size: { width: 0, height: 0 },
-        particles: {
-          shape: {
-            type: "char",
-            options: { char: { value: "0", font: "Verdana", fill: true } },
-          },
-        },
+      enable: true,
+      scale: 1.5,
+      type: "inline",
+      inline: {
+        arrangement: "equidistant",
       },
-      {
-        position: { x: 75, y: 50 },
-        rate: { quantity: 1, delay: 0.01 },
-        size: { width: 0, height: 0 },
-        particles: {
-          shape: {
-            type: "char",
-            options: { char: { value: "4", font: "Verdana", fill: true } },
-          },
-        },
+      move: {
+        type: "path",
+        radius: 12, // margen dentro del path
       },
-    ],
+      url: "/404.svg",
+    },
   }), []);
 
-  if (!init) return null;
+  return init ? (
+    <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
+  ) : null;
+};
 
-  return (
-    <div className="absolute inset-0 z-0 w-screen h-screen">
-  <Particles
-    id="tsparticles"
-    particlesLoaded={particlesLoaded}
-    options={options}
-  />
-</div>
-
-  );
-}
+export default Particles404;
