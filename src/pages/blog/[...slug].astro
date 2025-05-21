@@ -15,6 +15,6 @@ const { Content } = await post.render();
 ---
 <BlogsLayout title={post.data.title} posts={allPosts} currentSlug={post.slug}>
   <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
-  <article class="prose prose-lg max-w-none transition-all transition:name=` blog {post.data.title}`">
+  <article class="prose prose-lg max-w-none">
   <Content />
 </BlogsLayout>
