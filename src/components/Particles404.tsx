@@ -41,8 +41,8 @@ const Particles404 = () => {
     },
     particles: {
       number: {
-        value: 400,
-        density: { enable: false },
+        value: 500,
+        size: 1,
       },
       color: {
         value: "#c1ff00",
