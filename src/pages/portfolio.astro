@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
+import Computers from '../components/Computer';
+import Sections from '../components/AnimPortfolio';
+---
+
+<Header />
+
+<main class="min-h-screen flex flex-col items-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-6 pt-40
+[&_p]:text-gray-300 [&_p]:text-lg">
+
+  <div class="text-center space-y-4">
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+      Hola, soy <span class="text-green-400">Iván</span> 👋
+    </h1>
+    <p class="text-xl md:text-2xl font-medium text-gray-300">
+      Pentester y apasionado por la ciberseguridad
+    </p>
+
+    <div class="mt-8 w-full max-w-[800px] h-[500px] mx-auto">
+      <Computers client:only="react" />
+    </div>
+  </div>
+
+  <!-- Secciones de contenido -->
+  <div class="space-y-20 mt-[10vh] px-4 max-w-3xl mx-auto w-full">
+
+    <div data-section>
+      <h2 class="text-3xl font-bold mb-4 text-green-400">Experiencia laboral</h2>
+      <p>GICC</p>
+      <p>CEIS</p>
+    </div>
+
+    <div data-section>
+      <h2 class="text-3xl font-bold mb-4 text-green-400">Estudios</h2>
+      <p>eJPT</p>
+      <p>FP Especialización Ciberseguridad</p>
+      <p>FP ASIR</p>
+    </div>
+
+    <div data-section>
+      <h2 class="text-3xl font-bold mb-4 text-green-400">Skills</h2>
+      <p>Nmap</p>
+      <p>Burp Suite</p>
+      <p>Python</p>
+    </div>
+
+  </div>
+
+  <!-- Componente React que activa ScrollTrigger -->
+  <Sections client:only="react" />
+
+</main>
+
+<Footer />

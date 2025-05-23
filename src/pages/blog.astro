@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { getCollection } from 'astro:content';
 import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
 import Anim from "../components/AnimationsBlogIndex-gsap.tsx";
 
 const posts = await getCollection('blog');
@@ -34,3 +35,4 @@ const posts = await getCollection('blog');
   </div>
 </body>
 <Anim client:only="react" />
+<Footer />
