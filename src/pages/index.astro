@@ -1,16 +1,25 @@
 ---
+// src/pages/index.astro
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
+import AsciiEffect from '../components/Ascii.tsx';
+import AsciiTrail from '../components/AsciiTrail.tsx';
 ---
 
 <Header />
-<html title="Inicio">
-  <div class="container mx-auto px-4 py-8 pt-20">
-  <h1 class="text-4xl font-bold">¡Bienvenido a mi blog!</h1>
-  <p class="mt-2 text-gray-700 text-lg">Este es mi sitio hecho con Astro + Tailwind.</p>
-  <nav class="mt-4 space-x-4">
-    <a href="/blog" class="text-blue-600 underline">Blog</a>
-    <a href="/portfolio" class="text-green-600 underline">Portafolio</a>
-  </nav>
+<main class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center pt-40">
+  <div class="text-center space-y-4">
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+      Holaaaa, soy <span class="text-green-400">Iván</span> 👋
+    </h1>
+    <p class="text-xl md:text-2xl font-medium text-gray-300">
+      Pentester y apasionado por la ciberseguridad
+    </p>
+    <div class="mt-8 w-full max-w-3xl mx-auto">
+      <AsciiEffect client:only="react" />
+    </div>
   </div>
-
+</main>
+<AsciiTrail client:only="react" />
+<Footer />
