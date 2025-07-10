@@ -4,7 +4,7 @@ import "../styles/global.css";
 import Header from "../layouts/Header.astro";
 import Footer from "../layouts/Footer.astro";
 import AsciiEffect from '../components/Ascii.tsx';
-import AsciiTrail from '../components/AsciiTrail.tsx';
+import AsciiBackground from '../components/AsciiTrail-2.tsx';
 ---
 
 <Header />
@@ -18,9 +18,8 @@ import AsciiTrail from '../components/AsciiTrail.tsx';
       Pentester y apasionado por la ciberseguridad
     </p>
     <div class="mt-8 w-full max-w-3xl mx-auto">
-      <AsciiEffect client:only="react" />
     </div>
   </div>
 </main>
-<AsciiTrail client:only="react" />
+<AsciiBackground client:only="react" />
 <Footer />
