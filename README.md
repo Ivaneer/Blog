@@ -32,20 +32,6 @@ Todo está diseñado para verse 🔥 bonito y a la vez ser **útil**.
 
 ---
 
-## 🚀 ¿Por qué?
-
-Porque el conocimiento se oxida si no lo sacas. Y si alguien más lo encuentra útil, mejor todavía.
-
----
-
-## 👀 Preview
-
-![demo gif](./public/demo.gif)
-
-> 📱 Mobile-friendly y con efectos que no molestan, pero sí molan.
-
----
-
 ## 🧑‍💻 Autores
 
 Made with ❤️ by:
