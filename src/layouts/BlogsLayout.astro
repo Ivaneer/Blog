@@ -13,7 +13,11 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
     <title>{title} - Ivaneer</title>
   </head>
 
-  <body class="bg-[#0b0a0a] text-zinc-100 font-sans leading-relaxed min-h-screen flex pt-20">
+  <body class="bg-[#0b0a0a] text-zinc-100 font-sans leading-relaxed min-h-screen flex pt-20" style="
+  background-image: radial-gradient(#2e2e2e 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-attachment: fixed;
+">>
     <Header />
 
     <!-- Barra lateral izquierda -->
@@ -42,7 +46,7 @@ const { title, posts = [], currentSlug = "" } = Astro.props;
       [&_pre]:overflow-x-auto [&_pre]:break-all [&_pre]:max-w-full [&_pre]:relative [&_pre]:p-4 [&_pre]:!bg-[#121110] [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/10 [&_pre]:my-6 [&_pre]:group
       [&_code]:whitespace-pre-wrap [&_code]:break-words [&_code]:break-all [&_code]:overflow-x-auto [&_code]:max-w-full [&_code]:group
       [&_a]:text-violet-500 [&_a:hover]:underline [&_a:hover]:decoration-violet-500">
-
+      
       <slot />
     </main>
 
