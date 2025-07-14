@@ -1,47 +1,75 @@
-# Astro Starter Kit: Minimal
+# 🧪 Ivaneer Docs
 
-```sh
-npm create astro@latest -- --template minimal
-```
+> "Knowledge isn't power until it's shared."
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Bienvenid@ a mi pequeña web. Este es un sitio de documentación personal donde dejo anotado todo lo que aprendo, experimento o simplemente me explota la cabeza mientras trasteo con código, ciberseguridad, animaciones o cosas que se me van ocurriendo.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🧠 ¿Qué hay aquí?
 
-Inside of your Astro project, you'll see the following folders and files:
+Una mezcla de:
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- 📁 Documentación sobre proyectos propios
+- 📝 CV
+- 🧩 Snippets y trucos rápidos
+- 🛠️ Utilidades que me gustaría recordar
+- 🌐 Notas sobre ciberseguridad, desarrollo web, devops...
+- 🎨 Cosas cool con GSAP, partículas, React, Astro, etc
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Todo está diseñado para verse 🔥 bonito y a la vez ser **útil**.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🛸 Tecnologías que uso aquí
 
-## 🧞 Commands
+- ⚛️ React
+- 🧪 Astro
+- 🎥 GSAP
+- 💨 TailwindCSS
+- 🧬 tsParticles, InertiaPlugin
+- 🖥️ Herramientas de ciberseguridad
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🚀 ¿Por qué?
 
-## 👀 Want to learn more?
+Porque el conocimiento se oxida si no lo sacas. Y si alguien más lo encuentra útil, mejor todavía.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 👀 Preview
+
+![demo gif](./public/demo.gif)
+
+> 📱 Mobile-friendly y con efectos que no molestan, pero sí molan.
+
+---
+
+## 🧑‍💻 Autores
+
+Made with ❤️ by:
+
+- [@ivaneer](https://github.com/ivaneer)
+- [@habibi](https://github.com/Herrahabibi)
+
+---
+
+## ✨ Cómo contribuir
+
+Esto es algo personal, pero si ves algo que puede mejorar o quieres dejarme una idea, abre un issue o mándame un ping.
+
+---
+
+## 🧨 Disclaimer
+
+Este proyecto no tiene sentido para el mundo corporativo. Y eso es precisamente lo que lo hace especial.
+
+---
+
+## 🫶 Gracias
+
+A la comunidad open source. A los que hacen cosas porque sí. A los que comparten. A los que se rompen el coco para entender y luego documentan.
+
+---
+
