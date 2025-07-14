@@ -1,33 +1,22 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadAll } from "@tsparticles/all";
-import { type Container, type ISourceOptions } from "@tsparticles/engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const Particles404 = () => {
-  const [init, setInit] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadAll(engine);
-    }).then(() => setInit(true));
+    initParticlesEngine(loadAll).then(() => setReady(true));
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log("Particles loaded", container);
-  };
-
   const options: ISourceOptions = useMemo(() => ({
-    background: {
-      color: { value: "#000000" },
-    },
+    background: { color: { value: "#000000" } },
     fpsLimit: 60,
     detectRetina: true,
     interactivity: {
       events: {
-        onHover: {
-          enable: true,
-          mode: ["bubble"],
-        },
+        onHover: { enable: true, mode: ["bubble"] },
         resize: true,
       },
       modes: {
@@ -40,13 +29,8 @@ const Particles404 = () => {
       },
     },
     particles: {
-      number: {
-        value: 500,
-        size: 1,
-      },
-      color: {
-        value: "#c1ff00",
-      },
+      number: { value: 500, size: 1 },
+      color: { value: "#c1ff00" },
       links: {
         enable: true,
         distance: 40,
@@ -56,11 +40,9 @@ const Particles404 = () => {
       },
       move: {
         enable: true,
-        speed: 1.2, // Más rápido
+        speed: 1,
         random: true,
-        outModes: {
-          default: "bounce", // para que no salgan del path
-        },
+        outModes: { default: "bounce" },
       },
       opacity: {
         value: 0.8,
@@ -70,31 +52,20 @@ const Particles404 = () => {
         value: 1.5,
         random: true,
       },
-      shape: {
-        type: "circle",
-      },
+      shape: { type: "circle" },
     },
     polygon: {
-      draw: {
-        enable: false,
-      },
+      draw: { enable: false },
       enable: true,
       scale: 1.5,
       type: "inline",
-      inline: {
-        arrangement: "equidistant",
-      },
-      move: {
-        type: "path",
-        radius: 12, // margen dentro del path
-      },
+      inline: { arrangement: "equidistant" },
+      move: { type: "path", radius: 12 },
       url: "/404.svg",
     },
   }), []);
 
-  return init ? (
-    <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
-  ) : null;
+  return ready && <Particles id="tsparticles" options={options} />;
 };
 
 export default Particles404;

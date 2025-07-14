@@ -1,3 +1,4 @@
+// src/components/AsciiTrailDyna.tsx
 import React, { useEffect, useRef } from 'react'
 
 const density = ' .:-=+*#%@'
@@ -8,8 +9,19 @@ const MAX_SPEED = 6
 const RADIUS = 2
 const DECAY = 0.85
 
+const EXPLOSION_GROWTH = 0.8
+const EXPLOSION_DECAY = 0.98
+const EXPLOSION_WIDTH = 1.2
+
 const cellW = 18
 const cellH = 24
+
+type Wave = {
+  x: number
+  y: number
+  radius: number
+  energy: number
+}
 
 const AsciiTrailDyna = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -17,6 +29,7 @@ const AsciiTrailDyna = () => {
   const colsRef = useRef(0)
   const rowsRef = useRef(0)
   const aspectRef = useRef(1)
+  const waves = useRef<Wave[]>([])
 
   const dyna = useRef({
     pos: { x: 0, y: 0 },
@@ -44,18 +57,24 @@ const AsciiTrailDyna = () => {
 
     let mouse = { x: state.pos.x, y: state.pos.y }
     let target = { ...mouse }
-
     let activated = false
 
     const onMouseMove = (e: MouseEvent) => {
       if (!activated) activated = true
-
       const rect = canvas.getBoundingClientRect()
       target.x = ((e.clientX - rect.left) / rect.width) * cols
       target.y = ((e.clientY - rect.top) / rect.height) * rows
     }
 
+    const onClick = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      const cx = ((e.clientX - rect.left) / rect.width) * cols
+      const cy = ((e.clientY - rect.top) / rect.height) * rows
+      waves.current.push({ x: cx, y: cy, radius: 0, energy: 1 })
+    }
+
     window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('click', onClick)
 
     const draw = () => {
       if (!activated) {
@@ -63,7 +82,7 @@ const AsciiTrailDyna = () => {
         return
       }
 
-      // Suavizar movimiento del cursor
+      // Movimiento del trail
       mouse.x += (target.x - mouse.x) * 0.5
       mouse.y += (target.y - mouse.y) * 0.5
 
@@ -80,7 +99,6 @@ const AsciiTrailDyna = () => {
       state.vel.x = (state.vel.x + acc.x) * DAMP
       state.vel.y = (state.vel.y + acc.y) * DAMP
 
-      // Limitar la velocidad máxima
       const speed = Math.sqrt(state.vel.x ** 2 + state.vel.y ** 2)
       if (speed > MAX_SPEED) {
         const scale = MAX_SPEED / speed
@@ -95,7 +113,10 @@ const AsciiTrailDyna = () => {
       const points = getLine(state.pre, state.pos)
       const buffer = bufferRef.current!
       const aspect = aspectRef.current
+      const cols = colsRef.current
+      const rows = rowsRef.current
 
+      // Trail básico
       for (const p of points) {
         const sx = Math.max(0, p.x - RADIUS)
         const ex = Math.min(cols, p.x + RADIUS)
@@ -113,6 +134,37 @@ const AsciiTrailDyna = () => {
         }
       }
 
+      // Actualizar y aplicar ondas
+      for (const wave of waves.current) {
+        wave.radius += EXPLOSION_GROWTH
+        wave.energy *= EXPLOSION_DECAY
+
+        if (wave.energy < 0.01) continue
+
+        const sx = Math.max(0, Math.floor(wave.x - wave.radius - EXPLOSION_WIDTH))
+        const ex = Math.min(cols, Math.floor(wave.x + wave.radius + EXPLOSION_WIDTH))
+        const sy = Math.max(0, Math.floor(wave.y - (wave.radius + EXPLOSION_WIDTH) * aspect))
+        const ey = Math.min(rows, Math.floor(wave.y + (wave.radius + EXPLOSION_WIDTH) * aspect))
+
+        for (let y = sy; y < ey; y++) {
+          for (let x = sx; x < ex; x++) {
+            const dx = x - wave.x
+            const dy = (y - wave.y) / aspect
+            const dist = Math.sqrt(dx * dx + dy * dy)
+            const delta = Math.abs(dist - wave.radius)
+            if (delta < EXPLOSION_WIDTH) {
+              const idx = x + cols * y
+              const intensity = (1 - delta / EXPLOSION_WIDTH) * wave.energy
+              buffer[idx] = Math.max(buffer[idx], intensity)
+            }
+          }
+        }
+      }
+
+      // Limpiar ondas muertas
+      waves.current = waves.current.filter((w) => w.energy > 0.01)
+
+      // Render del buffer
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.font = `${cellH - 6}px monospace`
       ctx.textBaseline = 'top'
@@ -139,6 +191,7 @@ const AsciiTrailDyna = () => {
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('click', onClick)
     }
   }, [])
 
@@ -165,7 +218,7 @@ function getLine(a: { x: number; y: number }, b: { x: number; y: number }) {
   while (true) {
     points.push({ x: x0, y: y0 })
     if (x0 === x1 && y0 === y1) break
-    let e2 = 2 * err
+    const e2 = 2 * err
     if (e2 >= dy) {
       err += dy
       x0 += sx

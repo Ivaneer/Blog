@@ -2,24 +2,23 @@
 // src/pages/index.astro
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
-import Footer from "../layouts/Footer.astro";
-import AsciiEffect from '../components/Ascii.tsx';
-import AsciiBackground from '../components/AsciiTrail-2.tsx';
+import AsciiBackground from '../components/AsciiTrail-3.tsx';
+import ScrambledTitle from '../components/ScrambledTitle.tsx';
+import Subtitles from '../components/Subtitles.tsx'
 ---
 
 <Header />
 <title>Ivaneer</title>
-<main class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center pt-40">
+<main class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
   <div class="text-center space-y-4">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
-      Holaaaa, soy <span class="text-green-400">Iván</span> 👋
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight relative z-10">
+      <ScrambledTitle client:only="react" />
     </h1>
     <p class="text-xl md:text-2xl font-medium text-gray-300">
-      Pentester y apasionado por la ciberseguridad
+      <Subtitles client:only="react" />
     </p>
     <div class="mt-8 w-full max-w-3xl mx-auto">
     </div>
   </div>
 </main>
 <AsciiBackground client:only="react" />
-<Footer />
