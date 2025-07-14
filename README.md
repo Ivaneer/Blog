@@ -11,10 +11,10 @@ Bienvenid@ a mi pequeña web. Este es un sitio de documentación personal donde 
 Una mezcla de:
 
 - 📁 Documentación sobre proyectos propios
-- 📝 CV
 - 🧩 Snippets y trucos rápidos
 - 🛠️ Utilidades que me gustaría recordar
 - 🌐 Notas sobre ciberseguridad, desarrollo web, devops...
+- 📝 CV
 - 🎨 Cosas cool con GSAP, partículas, React, Astro, etc
 
 Todo está diseñado para verse 🔥 bonito y a la vez ser **útil**.
@@ -43,19 +43,6 @@ Made with ❤️ by:
 
 ## ✨ Cómo contribuir
 
-Esto es algo personal, pero si ves algo que puede mejorar o quieres dejarme una idea, abre un issue o mándame un ping.
+Esto es algo personal, pero si ves algo que puede mejorar o quieres dejarme una idea, abre un issue o mándame un dm.
 
 ---
-
-## 🧨 Disclaimer
-
-Este proyecto no tiene sentido para el mundo corporativo. Y eso es precisamente lo que lo hace especial.
-
----
-
-## 🫶 Gracias
-
-A la comunidad open source. A los que hacen cosas porque sí. A los que comparten. A los que se rompen el coco para entender y luego documentan.
-
----
-
