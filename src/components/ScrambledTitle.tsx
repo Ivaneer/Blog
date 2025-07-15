@@ -18,16 +18,16 @@ const ScrambledTitle = () => {
             text: "",
             chars: "01",
             revealDelay: 0.3,
-            speed: 0.5,
+            speed: 0.8,
           },
         },
         {
           scrambleText: {
-            text: "Hola, soy Iván",
+            text: "Hola, soy Ivaneer",
             chars: "lowerCase",
             speed: 1,
           },
-          duration: 2.5,
+          duration: 1.2,
           onComplete: () => {
             // Animar emoji saludando (wave)
             gsap.to(emojiRef.current, {

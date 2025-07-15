@@ -4,7 +4,7 @@ import gsap from "gsap"
 
 const subtitles = [
   "Pentester y apasionado por la ciberseguridad",
-  "Investigador de vulnerabilidades",
+  "Investigador de QKD",
   "Entusiasta de los CTF",
   "DevSecOps y automatización",
   "Sysadmin",

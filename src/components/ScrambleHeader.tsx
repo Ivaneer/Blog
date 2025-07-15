@@ -19,11 +19,11 @@ export default function ScrambleLink({ text, href, className = "", ...props }: S
 
     const onHover = () => {
       gsap.to(el, {
-        duration: 1,
+        duration: 0.5,
         scrambleText: {
           text,
           chars: "!<>-_\\/[]{}—=+*^?#________",
-          speed: 0.3,
+          speed: 0.8,
         },
         overwrite: true,
       });

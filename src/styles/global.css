@@ -42,3 +42,82 @@ aside::-webkit-scrollbar-thumb {
 #toc a.font-bold::before {
   opacity: 1;
 }
+.glow {
+  position: absolute;
+  top: 15em;
+  left: 50%;
+  width: 40em;
+  max-width: 100%;
+  height: 20em;
+  border-radius: 30%;
+  background: radial-gradient(#460631aa 20%, #d886c455 100%);
+  transform: translate(-50%, 0%);
+  will-change: transform;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes bord {
+  0% {
+    bottom: calc(100% - 0.6em);
+    left: calc(0% - 2px);
+  }
+  24% {
+    bottom: 0.6em;
+    left: calc(0% - 2px);
+  }
+  25% {
+    bottom: 0.2em;
+    left: 0.2em;
+  }
+  26% {
+    bottom: calc(0% - 2px);
+    left: 0.6em;
+  }
+  49% {
+    bottom: calc(0% - 2px);
+    left: calc(100% - 0.6rem);
+  }
+  50% {
+    bottom: 0.2em;
+    right: 0.2em;
+  }
+  51% {
+    bottom: 0.6em;
+    left: calc(100% - 2px);
+  }
+  74% {
+    bottom: calc(100% - 0.6em);
+    left: calc(100% - 2px);
+  }
+  75% {
+    bottom: calc(100% - 0.2em);
+    righ: 0.2em;
+  }
+  76% {
+    bottom: calc(100% - 2px);
+    left: calc(100% - 0.6em);
+  }
+  98% {
+    bottom: calc(100% - 2px);
+    left: 0.6em;
+  }
+  99% {
+    bottom: calc(100% - 0.2rem);
+    left: 0.2rem;
+  }
+  100% {
+    bottom: calc(100% - 0.6em);
+    left: 2px;
+  }
+}
+
+.experience-dot {
+  animation: bord 7s linear infinite;
+  box-shadow:
+    0px 0px 10px 3px #f76927aa,
+    0px 0px 25px 6px #f7692788,
+    0px 0px 40px 10px #f7692733;
+  transition: opacity 0.3s ease;
+}

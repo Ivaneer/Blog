@@ -8,49 +8,192 @@ import Sections from '../components/AnimPortfolio';
 
 <Header />
 <title>Portfolio - Ivaneer</title>
+<div class="min-h-screen flex flex-col bg-gray-900 text-white">
 <main class="min-h-screen flex flex-col items-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-6 pt-40
 [&_p]:text-gray-300 [&_p]:text-lg">
 
-  <div class="text-center space-y-4">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+<section class="flex flex-col md:flex-row items-center justify-center gap-12 min-h-[60vh] px-6">
+  <!-- Tarjeta Descripción -->
+  <div class="w-full md:w-1/2 max-w-xl p-6 rounded-2xl bg-white/5 border border-transparent transition-all duration-300 hover:border-green-400 hover:bg-green-400/5 shadow hover:shadow-[0_0_20px_rgba(34,197,94,0.4)]">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
       Hola, soy <span class="text-green-400">Iván</span> 👋
     </h1>
-    <p class="text-xl md:text-2xl font-medium text-gray-300">
-      Pentester y apasionado por la ciberseguridad
+    <p class="text-xs text-gray-300">
+      Passionate and self-taught cybersecurity professional with a background in systems administration and DevSecOps.
+      I have hands-on experience securing enterprise environments, protecting infrastructure and data.
+      I continuously sharpen my skills through challenges and as a hobby I actively participate in Capture The Flag.
+      I’m looking to apply my skills and experience in a professional Cybersecurity Specialist role.
     </p>
-
-    <div class="mt-8 w-full max-w-[800px] h-[500px] mx-auto">
-      <Computers client:only="react" />
-    </div>
+    <ul class="flex space-x-4 list-none p-0 m-4">
+      <li>
+        <a target="_blank" href="https://es.linkedin.com/in/ivan-hernández">
+          <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 6.67019C0 5.0614 0.563079 3.73418 1.68919 2.68853C2.8153 1.64282 4.2793 1.12 6.08108 1.12C7.85072 1.12 9.28248 1.63476 10.3764 2.6644C11.5026 3.72617 12.0656 5.10967 12.0656 6.81498C12.0656 8.35938 11.5187 9.64635 10.4247 10.676C9.2986 11.7378 7.81853 12.2686 5.98456 12.2686H5.93629C4.16665 12.2686 2.73489 11.7378 1.64093 10.676C0.546959 9.6142 0 8.27892 0 6.67019ZM0.627413 48.8999V16.6605H11.3417V48.8999H0.627413ZM17.278 48.8999H27.9923V30.898C27.9923 29.7718 28.121 28.9031 28.3784 28.2918C28.8288 27.1978 29.5125 26.2728 30.4295 25.5167C31.3465 24.7606 32.4968 24.3825 33.8803 24.3825C37.4839 24.3825 39.2857 26.8117 39.2857 31.6702V48.8999H50V30.4154C50 25.6534 48.8739 22.0418 46.6216 19.5804C44.3694 17.119 41.3932 15.8883 37.693 15.8883C33.5425 15.8883 30.3089 17.674 27.9923 21.2455V21.342H27.944L27.9923 21.2455V16.6605H17.278C17.3423 17.6901 17.3745 20.8915 17.3745 26.2648C17.3745 31.638 17.3423 39.183 17.278 48.8999Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://github.com/ivaneer/">
+          <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9912 1.25C19.0933 1.25306 13.3887 3.342 8.89755 7.1433C4.40641 10.9446 1.42158 16.2104 0.476755 21.9991C-0.468069 27.7877 0.688722 33.7219 3.7403 38.7403C6.79189 43.7588 11.5393 47.5343 17.1335 49.3918C18.3677 49.6209 18.8326 48.856 18.8326 48.2056C18.8326 47.5552 18.8079 45.6694 18.7997 43.6078C11.8882 45.1008 10.4278 40.6912 10.4278 40.6912C9.30055 37.8278 7.67142 37.0752 7.67142 37.0752C5.41697 35.5453 7.84011 35.5739 7.84011 35.5739C10.3373 35.7498 11.6496 38.1223 11.6496 38.1223C13.863 41.8979 17.4626 40.8058 18.8779 40.1676C19.1 38.5682 19.7459 37.4801 20.4576 36.8624C14.9367 36.2407 9.13599 34.1218 9.13599 24.6562C9.10177 22.2014 10.0179 19.8274 11.6949 18.0254C11.4398 17.4036 10.5882 14.892 11.9376 11.4805C11.9376 11.4805 14.0234 10.8178 18.7709 14.0126C22.843 12.9053 27.1394 12.9053 31.2115 14.0126C35.9549 10.8178 38.0366 11.4805 38.0366 11.4805C39.3901 14.8839 38.5385 17.3955 38.2834 18.0254C39.9657 19.8277 40.8838 22.2058 40.8464 24.6644C40.8464 34.1504 35.0334 36.2407 29.5042 36.8502C30.3928 37.6192 31.1868 39.1204 31.1868 41.4275C31.1868 44.7327 31.158 47.3916 31.158 48.2056C31.158 48.8642 31.6065 49.6332 32.8653 49.3918C38.4603 47.5341 43.2081 43.7579 46.2596 38.7386C49.3112 33.7193 50.4674 27.7843 49.5215 21.995C48.5756 16.2058 45.5892 10.94 41.0966 7.13934C36.604 3.33869 30.8981 1.25112 24.9994 1.25H24.9912Z" fill="currentColor"/>
+            <path d="M9.55505 36.7192C9.50157 36.8419 9.3041 36.8787 9.14366 36.7928C8.98321 36.7069 8.86392 36.5474 8.92151 36.4206C8.97911 36.2938 9.17246 36.2611 9.33291 36.347C9.49335 36.4329 9.61676 36.5965 9.55505 36.7192Z" fill="currentColor"/>
+            <path d="M10.563 37.8359C10.4779 37.8786 10.3804 37.8905 10.2873 37.8696C10.1943 37.8487 10.1114 37.7963 10.0529 37.7214C9.89248 37.5496 9.85955 37.3123 9.98297 37.206C10.1064 37.0996 10.3286 37.1487 10.489 37.3205C10.6494 37.4923 10.6865 37.7296 10.563 37.8359Z" fill="currentColor"/>
+            <path d="M11.5421 39.2554C11.3899 39.3617 11.1307 39.2554 10.9867 39.0427C10.9469 39.0045 10.9152 38.9587 10.8936 38.9081C10.8719 38.8575 10.8608 38.8031 10.8608 38.7481C10.8608 38.6931 10.8719 38.6387 10.8936 38.5881C10.9152 38.5375 10.9469 38.4918 10.9867 38.4536C11.1389 38.3514 11.3981 38.4536 11.5421 38.6622C11.6861 38.8708 11.6902 39.149 11.5421 39.2554V39.2554Z" fill="currentColor"/>
+            <path d="M12.871 40.6299C12.7352 40.7812 12.4596 40.7403 12.2333 40.5358C12.007 40.3313 11.9535 40.0531 12.0893 39.9059C12.2251 39.7586 12.5007 39.7995 12.7352 39.9999C12.9697 40.2004 13.0149 40.4826 12.871 40.6299V40.6299Z" fill="currentColor"/>
+            <path d="M14.7345 41.4315C14.6728 41.6238 14.393 41.7097 14.1133 41.6279C13.8335 41.546 13.6484 41.317 13.7019 41.1206C13.7554 40.9243 14.0392 40.8343 14.3231 40.9243C14.607 41.0143 14.788 41.2311 14.7345 41.4315Z" fill="currentColor"/>
+            <path d="M16.767 41.5706C16.767 41.7711 16.5366 41.9429 16.2404 41.947C15.9442 41.951 15.7015 41.7874 15.7015 41.587C15.7015 41.3865 15.9319 41.2147 16.2281 41.2106C16.5243 41.2066 16.767 41.3661 16.767 41.5706Z" fill="currentColor"/>
+            <path d="M18.6592 41.2557C18.6962 41.4561 18.4905 41.6647 18.1943 41.7138C17.8981 41.7629 17.6389 41.6443 17.6019 41.4479C17.5649 41.2516 17.7788 41.0389 18.0668 40.9857C18.3548 40.9325 18.6222 41.0552 18.6592 41.2557Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
   </div>
+  <!-- Computadora -->
+  <div class="w-full md:w-1/2 max-w-[500px] h-[400px] flex items-center justify-center -mt-36">
+    <Computers client:only="react" />
+  </div>
+</section>
+
+<!-- Flecha animada -->
+<div class="flex justify-center mt-8">
+  <div class="animate-bounce text-green-400 text-3xl">↓</div>
+</div>
+
+
+
 
   <!-- Secciones de contenido -->
   <div class="space-y-20 mt-[10vh] px-4 max-w-3xl mx-auto w-full">
-
-    <div data-section>
-      <h2 class="text-3xl font-bold mb-4 text-green-400">Experiencia laboral</h2>
-      <p>GICC</p>
-      <p>CEIS</p>
-    </div>
-
-    <div data-section>
-      <h2 class="text-3xl font-bold mb-4 text-green-400">Estudios</h2>
-      <p>eJPT</p>
-      <p>FP Especialización Ciberseguridad</p>
-      <p>FP ASIR</p>
-    </div>
-
-    <div data-section>
-      <h2 class="text-3xl font-bold mb-4 text-green-400">Skills</h2>
-      <p>Nmap</p>
-      <p>Burp Suite</p>
-      <p>Python</p>
-    </div>
-
-  </div>
-  
+    
+    <!-- Experiencia -->
+    <section class="experiences">
+      <div class="mb-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-green-400">Experiencia</h2>
+      </div>
+    
+      <div class="flex flex-col gap-y-10">
+    
+        <!-- GIICC -->
+        <article class="relative w-full p-8 rounded-xl bg-white/5 border border-white/20 text-start hover:border-[#f76927aa] group">
+          <div class="flex flex-wrap justify-start gap-4 items-center">
+            <h3 class="flex items-center text-[var(--secondary)] group-hover:text-[#f76927] transition-none">GIICC</h3>
+            <p class="font-medium">- Administrador de Sistemas</p>
+          </div>
+    
+          <p class="text-[1rem] text-[var(--secondary)] mt-2">
+            <time datetime="2024-11">Noviembre 2024</time> – <time datetime="now">Actualidad</time>
+          </p>
+    
+          <ul class="pt-4 pl-6 text-[1.1rem] list-disc space-y-1">
+            <li><b>Despliegue MadQCI y Sistemas Criptográficos QKD:</b> Configuración de nodos y sistemas QKD.</li>
+            <li><b>Comunicaciones seguras:</b> VPN IPsec encriptada con QKD y KMS entre distintos fabricantes (Fortinet, Juniper, Cisco...)</li>
+            <li><b>DevSecOps y automatización:</b> CI/CD en GitLab, testing y despliegues en Kubernetes.</li>
+            <li><b>Gestión de servidores:</b> Administración y monitorización de servidores e hipervisores.</li>
+            <li><b>Ciberseguridad:</b> Reglas ACL, hardening, y despliegue de SIEM.</li>
+            <li><b>Linux personalizado:</b> Creación de mini distro basada en Debian.</li>
+          </ul>
+          <div class="absolute bottom-0 left-[-1px] w-[4px] h-[4px] rounded-full bg-[#fc7e44] opacity-0 group-hover:opacity-100 animate-[bord_7s_linear_infinite] pointer-events-none shadow-[0px_0px_10px_3px_#f76927aa,0px_0px_25px_6px_#f7692788,0px_0px_40px_10px_#f7692733]"></div>
+        </article>
+    
+        <!-- CEIS -->
+        <article class="relative w-full p-8 rounded-xl bg-white/5 border border-white/20 text-start hover:border-[#f76927aa] group">
+          <div class="flex flex-wrap justify-start gap-4 items-center">
+            <h3 class="flex items-center text-[var(--secondary)] group-hover:text-[#f76927] transition-none">CEIS</h3>
+            <p class="font-medium">- Administrador Junior de Sistemas IT</p>
+          </div>
+          <p class="text-[1rem] text-[var(--secondary)] mt-2">
+            <time datetime="2023-04">Abril 2023</time> – <time datetime="2023-10">Octubre 2023</time>
+          </p>
+    
+          <ul class="pt-4 pl-6 text-[1.1rem] list-disc space-y-1">
+            <li>Gestión de Active Directory e Intune MDM.</li>
+            <li>Migración de servicios a la nube.</li>
+            <li>Configuración, administración y monitorización de servidores para garantizar la continuidad operativa.</li>
+            <li><b>Ciberseguridad y cumplimiento:</b> Implementación de controles de acceso y protocolos de seguridad según normativa ISO 27001.</li>
+            <li>Gestión diaria de la infraestructura IT.</li>
+            <li><b>Otros conocimientos:</b> Kubernetes, Docker, VLAN, switches Aruba, Panda 360, firewalls Fortinet, VMware, y estrategias de automatización.</li>
+          </ul>
+          <div class="absolute bottom-0 left-[-1px] w-[4px] h-[4px] rounded-full bg-[#fc7e44] opacity-0 group-hover:opacity-100 animate-[bord_7s_linear_infinite] pointer-events-none shadow-[0px_0px_10px_3px_#f76927aa,0px_0px_25px_6px_#f7692788,0px_0px_40px_10px_#f7692733]"></div>
+        </article>
+    
+      </div>
+    </section>
+    
+    <!-- Certificaciones -->
+    <section class="mt-20 space-y-6 text-left max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-green-400 text-center">Certificaciones</h2>
+      <div class="space-y-4">
+        
+        <!-- eJPTv2 -->
+        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4 hover:bg-green-400/10 transition">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/ejpt.png" alt="eJPTv2" class="w-14 h-14 object-contain rounded" />
+          <div>
+            <h3 class="font-bold text-white">eJPTv2</h3>
+            <p class="text-sm text-white/80">OWASP Top 10, Burp Suite, técnicas manuales y herramientas automatizadas, privilege escalation, pivoting, bypass, hacking web.</p>
+          </div>
+        </div>
+    
+        <!-- Ethical Hacker -->
+        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4 hover:bg-orange-400/10 transition">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/cisco-hacker.png" alt="Ethical Hacker Cisco" class="w-14 h-14 object-contain rounded" />
+          <div>
+            <h3 class="font-bold text-white">Ethical Hacker - Cisco</h3>
+            <p class="text-sm text-white/80">Certificación de ciberseguridad y hacking ético emitida por Cisco.</p>
+          </div>
+        </div>
+    
+        <!-- CCNAv7 -->
+        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4 hover:bg-sky-400/10 transition">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/cisco-ccna.png" alt="CCNA Cisco" class="w-14 h-14 object-contain rounded" />
+          <div>
+            <h3 class="font-bold text-white">CCNAv7 - Cisco</h3>
+            <p class="text-sm text-white/80">Introducción a Redes (ITN).</p>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+    
+    <!-- Habilidades -->
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-green-400 text-center">Skills</h2>
+      <div class="flex flex-wrap justify-center gap-6">
+    
+        <!-- Nmap -->
+        <div class="p-3 rounded-2xl border border-transparent bg-green-400/10 transition-all duration-300 hover:border-green-400 hover:bg-green-400/30 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/nmap.png" alt="Nmap" class="w-8 h-8 object-contain" />
+        </div>
+    
+        <!-- Burp Suite -->
+        <div class="p-3 rounded-2xl border border-transparent bg-orange-400/10 transition-all duration-300 hover:border-orange-400 hover:bg-orange-400/30 hover:shadow-[0_0_20px_rgba(251,146,60,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/burpsuite.webp" alt="Burp Suite" class="w-8 h-8 object-contain" />
+        </div>
+    
+        <!-- Python -->
+        <div class="p-3 rounded-2xl border border-transparent bg-yellow-300/10 transition-all duration-300 hover:border-yellow-300 hover:bg-yellow-300/30 hover:shadow-[0_0_20px_rgba(253,224,71,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/Python.webp" alt="Python" class="w-8 h-8 object-contain" />
+        </div>
+    
+        <!-- Linux -->
+        <div class="p-3 rounded-2xl border border-transparent bg-gray-400/10 transition-all duration-300 hover:border-gray-400 hover:bg-gray-400/30 hover:shadow-[0_0_20px_rgba(156,163,175,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/linux.png" alt="Linux" class="w-8 h-8 object-contain" />
+        </div>
+    
+        <!-- Docker -->
+        <div class="p-3 rounded-2xl border border-transparent bg-sky-400/10 transition-all duration-300 hover:border-sky-400 hover:bg-sky-400/30 hover:shadow-[0_0_20px_rgba(56,189,248,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/Docker.webp" alt="Docker" class="w-8 h-8 object-contain" />
+        </div>
+    
+        <!-- Kubernetes -->
+        <div class="p-3 rounded-2xl border border-transparent bg-indigo-400/10 transition-all duration-300 hover:border-indigo-400 hover:bg-indigo-400/30 hover:shadow-[0_0_20px_rgba(129,140,248,0.6)]">
+          <img src="https://uuqke3c479llohf3.public.blob.vercel-storage.com/Kubernetes.svg" alt="Kubernetes" class="w-8 h-8 object-contain" />
+        </div>
+    
+      </div>
+    </section>
+    
   <Sections client:only="react" />
-
 </main>
 
 <Footer />
+</div>
