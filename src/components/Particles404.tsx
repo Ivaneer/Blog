@@ -12,7 +12,7 @@ const Particles404 = () => {
 
   const options: ISourceOptions = useMemo(() => ({
     background: { color: { value: "#000000" } },
-    fpsLimit: 60,
+    fpsLimit: 45,
     detectRetina: true,
     interactivity: {
       events: {
