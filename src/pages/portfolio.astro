@@ -4,13 +4,16 @@ import Header from "../layouts/Header.astro";
 import Footer from "../layouts/Footer.astro";
 import Computers from '../components/Computer';
 import Sections from '../components/AnimPortfolio';
+import SilkBackground from "../components/SilkBackground.tsx";
 ---
 
 <Header />
 <title>Portfolio - Ivaneer</title>
-<div class="min-h-screen flex flex-col bg-gray-900 text-white">
-<main class="min-h-screen flex flex-col items-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-6 pt-40
-[&_p]:text-gray-300 [&_p]:text-lg">
+<SilkBackground client:only="react" />
+<div class="relative min-h-screen flex flex-col  text-white">
+  <main class="relative z-10 min-h-screen flex flex-col items-center bg-transparent text-white px-6 pt-40
+  [&_p]:text-gray-300 [&_p]:text-lg ">
+  
 
 <section class="flex flex-col md:flex-row items-center justify-center gap-12 min-h-[60vh] px-6">
   <!-- Tarjeta Descripción -->

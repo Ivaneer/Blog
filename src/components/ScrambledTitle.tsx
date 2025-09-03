@@ -7,10 +7,9 @@ gsap.registerPlugin(ScrambleTextPlugin)
 
 const ScrambledTitle = () => {
   const textRef = useRef<HTMLHeadingElement>(null)
-  const emojiRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    if (textRef.current && emojiRef.current) {
+    if (textRef.current) {
       gsap.fromTo(
         textRef.current,
         {
@@ -23,22 +22,11 @@ const ScrambledTitle = () => {
         },
         {
           scrambleText: {
-            text: "Hola, soy Ivaneer",
+            text: "Ivaneer",
             chars: "lowerCase",
             speed: 1,
           },
           duration: 1.2,
-          onComplete: () => {
-            // Animar emoji saludando (wave)
-            gsap.to(emojiRef.current, {
-              rotation: 20,
-              yoyo: true,
-              repeat: -1,
-              duration: 0.6,
-              ease: "power1.inOut",
-              transformOrigin: "70% 70%",
-            })
-          },
         }
       )
     }
@@ -46,19 +34,13 @@ const ScrambledTitle = () => {
 
   return (
     <h1
-      className="text-4xl md:text-6xl font-bold tracking-tight relative z-10 font-mono text-green-400"
-      style={{ display: "inline-flex", alignItems: "center", gap: "0.25rem" }}
-    >
-      <span ref={textRef} />
-      <span
-        ref={emojiRef}
-        style={{ display: "inline-block", color: "white" }}
-        aria-label="mano saludando"
-        role="img"
-      >
-        👋
-      </span>
-    </h1>
+      ref={textRef}
+      className="text-6xl md:text-9xl font-extrabold tracking-tight relative z-10 text-green-400"
+      style={{
+        display: "inline-block",
+        fontFamily: "'Fira Code', monospace",
+      }}
+    />
   )
 }
 

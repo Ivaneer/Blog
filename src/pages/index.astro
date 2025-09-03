@@ -3,6 +3,7 @@
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
 import AsciiBackground from '../components/AsciiTrail-3.tsx';
+import SilkBackground from "../components/SilkBackground.tsx";
 import ScrambledTitle from '../components/ScrambledTitle.tsx';
 import Subtitles from '../components/Subtitles.tsx'
 ---
@@ -22,4 +23,5 @@ import Subtitles from '../components/Subtitles.tsx'
     </div>
   </div>
 </main>
+<SilkBackground client:only="react" />
 <AsciiBackground client:only="react" />

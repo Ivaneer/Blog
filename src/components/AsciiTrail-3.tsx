@@ -198,7 +198,7 @@ const AsciiTrailDyna = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-0 bg-transparent"
+      className="fixed top-0 left-0 w-screen h-screen pointer-events-none z-3 bg-transparent"
     />
   )
 }
