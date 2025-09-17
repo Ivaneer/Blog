@@ -1,27 +1,19 @@
 ---
-// src/pages/index.astro
 import "../styles/global.css";
 import Header from "../layouts/Header.astro";
 import AsciiBackground from '../components/AsciiTrail-3.tsx';
 import SilkBackground from "../components/SilkBackground.tsx";
-import ScrambledTitle from '../components/ScrambledTitle.tsx';
-import Subtitles from '../components/Subtitles.tsx'
+import AnimationsIndex from '../components/AnimationsIndex.tsx'
 ---
 
 <Header />
 <title>Ivaneer</title>
-<div class="glow"></div>
-<main class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
-  <div class="text-center space-y-4">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight relative z-10">
-      <ScrambledTitle client:only="react" />
-    </h1>
-    <p class="text-xl md:text-2xl font-medium text-gray-300">
-      <Subtitles client:only="react" />
-    </p>
-    <div class="mt-8 w-full max-w-3xl mx-auto">
-    </div>
-  </div>
+<main class="min-h-screen bg-transparent text-white flex flex-col items-center justify-center relative z-10">
+  <AnimationsIndex client:only="react" />
 </main>
-<SilkBackground client:only="react" />
+
+<div class="absolute inset-0 z-0 bg-black">
+  <SilkBackground client:only="react" />
+</div>
 <AsciiBackground client:only="react" />
+

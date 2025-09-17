@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&display=swap');
 @import "tailwindcss";
 
-
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000000;
+  overflow-x: hidden;
+}
 aside {
   scrollbar-width: thin;
   scrollbar-color: #a1a1aa #121212;

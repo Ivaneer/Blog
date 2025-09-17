@@ -42,9 +42,9 @@ const Computers = () => {
       {!isLoaded && <Loader />}
       <Canvas
         frameloop="demand"
-        shadows
+        shadows={false}
         camera={{ position: [20, 3, 5], fov: 25 }}
-        gl={{ preserveDrawingBuffer: true }}
+        gl={{ preserveDrawingBuffer: false }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[3, 3, 3]} />

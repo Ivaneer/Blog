@@ -168,7 +168,7 @@ const AsciiTrailDyna = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.font = `${cellH - 6}px monospace`
       ctx.textBaseline = 'top'
-      ctx.fillStyle = '#05df72'
+      ctx.fillStyle = '#43D9AD'
 
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {

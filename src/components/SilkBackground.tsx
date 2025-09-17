@@ -23,6 +23,7 @@ const vertexShader = `
 `;
 
 const fragmentShader = `
+  precision mediump float;
   varying vec2 vUv;
   varying vec3 vPosition;
 
@@ -86,17 +87,15 @@ const SilkPlane = forwardRef<any, { uniforms: any }>(function SilkPlane({ unifor
     }
   }, [ref, viewport]);
 
-  // Limitar FPS (30fps aprox)
   let accum = 0;
   useFrame((_, delta) => {
-    accum += delta;
-    if (accum > 1 / 30) { // 30 fps
-      if (ref && (ref as any).current) {
-        (ref as any).current.material.uniforms.uTime.value += 0.1 * accum;
-      }
-      accum = 0;
+    if (ref && (ref as any).current) {
+      // 0.1 aquí mantiene la velocidad equivalente a tu versión original
+      (ref as any).current.material.uniforms.uTime.value += delta * 0.1;
     }
   });
+  
+  
 
   return (
     <mesh ref={ref}>
@@ -135,8 +134,9 @@ export default function SilkBackground({
 
   return (
     <Canvas
-      dpr={[1, 1.5]} // limitamos el DPR para evitar lag en pantallas retina
+      dpr={[1, 1.1]} // limitamos el DPR para evitar lag en pantallas retina
       frameloop="always" // mantenemos always, pero con FPS limitados en useFrame
+      performance={{ min: 0.5 }}
       style={{
         position: "fixed",
         inset: 0,

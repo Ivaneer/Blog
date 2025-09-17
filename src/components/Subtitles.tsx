@@ -44,7 +44,7 @@ const FlipSubtitles = () => {
   return (
     <p
       ref={textRef}
-      className="text-xl md:text-2xl font-medium text-gray-300 font-mono"
+      className="text-xl md:text-2xl font-medium text-gray-300 font-mono relative z-10"
       style={{ height: "2.5rem", overflow: "hidden" }}
     >
       {subtitles[index]}
