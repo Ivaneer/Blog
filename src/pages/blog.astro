@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Header from "../layouts/Header.astro";
 import Footer from "../layouts/Footer.astro";
 import Anim from "../components/AnimationsBlogIndex-gsap.tsx";
+import SearchComponent from "../components/SearchComponent.tsx";
 
 const posts = await getCollection('blog');
 ---
@@ -16,6 +17,8 @@ const posts = await getCollection('blog');
     <h1 class="text-3xl font-extrabold mb-10 text-center tracking-wide text-[#43D9AD]">
       Writeups
     </h1>
+
+    <SearchComponent client:only="react" posts={posts} />
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
       {posts.map((post) => (
