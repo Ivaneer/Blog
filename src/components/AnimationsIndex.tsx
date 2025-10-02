@@ -49,11 +49,11 @@ const HomeIntro: React.FC = () => {
         <Subtitles client:only="react" />
       </p>
       <div className="intro-buttons mt-10 flex justify-center gap-3">
-        <a href="/contacto" className="inline-block">
-          <LiquidButtons label="Contacto" client:only="react" />
+        <a href="/portfolio" className="inline-block">
+          <LiquidButtons label="Portfolio" client:only="react" />
         </a>
-        <a href="/proyectos" className="inline-block">
-          <LiquidButtons label="Proyectos" client:only="react" />
+        <a href="/blog" className="inline-block">
+          <LiquidButtons label="Blog" client:only="react" />
         </a>
       </div>
     </div>
